@@ -2,7 +2,21 @@ package models;
 
 public class Soda {
     private String brand;
-    private boolean diet;
-    private float price;
-    private int quantity;
+    private double price;
+
+    public void setBrand(String expected) {
+        brand = expected;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setPrice(double expected) {
+        price = expected;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }
