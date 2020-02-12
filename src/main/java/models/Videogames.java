@@ -1,6 +1,7 @@
 package models;
 
 public class Videogames {
+    private int id;
     private String title;
     private String developer;
     private String genre;
@@ -10,7 +11,8 @@ public class Videogames {
 
     public Videogames(){}
 
-    public Videogames(double expectedPrice, String expectedDeveloper, String expectedCondition, String expectedPublisher, String expectedGenre, String expectedTitle) {
+    public Videogames(int expectedId, double expectedPrice, String expectedDeveloper, String expectedCondition, String expectedPublisher, String expectedGenre, String expectedTitle) {
+        id = expectedId;
         price = expectedPrice;
         developer = expectedDeveloper;
         condition = expectedCondition;
@@ -66,5 +68,13 @@ public class Videogames {
 
     public String getCondition() {
         return condition;
+    }
+
+    public void setId(int expected){
+        id = expected;
+    }
+
+    public int getId(){
+        return id;
     }
 }

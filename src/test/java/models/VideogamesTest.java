@@ -64,18 +64,29 @@ public class VideogamesTest {
 
         Assertions.assertEquals(expected, testVideogames.getPrice());
     }
+    @Test
+    public void setIdTest(){
+        int expected = 2;
+
+        Videogames testVideogames = new Videogames();
+        testVideogames.setId(expected);
+
+        Assertions.assertEquals(expected, testVideogames.getId());
+    }
 
     @Test
     public void constructorTest(){
         double expectedPrice = 59.99;
+        int expectedId = 2;
         String expectedDeveloper = "Dice";
         String expectedCondition = "Used";
         String expectedPublisher = "EA";
         String expectedGenre = "Shooter";
         String expectedTitle = "Battlefield";
 
-        Videogames testVideogames = new Videogames(expectedPrice, expectedDeveloper, expectedCondition, expectedPublisher, expectedGenre, expectedTitle);
+        Videogames testVideogames = new Videogames(expectedId, expectedPrice, expectedDeveloper, expectedCondition, expectedPublisher, expectedGenre, expectedTitle);
 
+        Assertions.assertEquals(expectedId, testVideogames.getId());
         Assertions.assertEquals(expectedPrice, testVideogames.getPrice());
         Assertions.assertEquals(expectedDeveloper, testVideogames.getDeveloper());
         Assertions.assertEquals(expectedPublisher, testVideogames.getPublisher());

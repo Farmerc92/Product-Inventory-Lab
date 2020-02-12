@@ -1,12 +1,14 @@
 package models;
 
 public class Soda {
+    private int id;
     private String brand;
     private double price;
 
     public Soda(){}
 
-    public Soda(double expectedPrice, String expectedBrand) {
+    public Soda(int expectedId, double expectedPrice, String expectedBrand) {
+        id = expectedId;
         brand = expectedBrand;
         price = expectedPrice;
     }
@@ -26,4 +28,13 @@ public class Soda {
     public double getPrice() {
         return price;
     }
+
+    public void setId(int expected){
+        id = expected;
+    }
+
+    public int getId(){
+        return id;
+    }
+
 }
