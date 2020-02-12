@@ -25,4 +25,15 @@ public class SodaTest {
         Assertions.assertEquals(expected, testSoda.getPrice());
     }
 
+    @Test
+    public void constructorTest(){
+        double expectedPrice = 2.99;
+        String expectedBrand = "Pepsi";
+
+        Soda testSoda = new Soda(expectedPrice, expectedBrand);
+
+        Assertions.assertEquals(expectedPrice, testSoda.getPrice());
+        Assertions.assertEquals(expectedBrand, testSoda.getBrand());
+    }
+
 }

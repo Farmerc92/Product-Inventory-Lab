@@ -8,6 +8,17 @@ public class Videogames {
     private double price;
     private String condition;
 
+    public Videogames(){}
+
+    public Videogames(double expectedPrice, String expectedDeveloper, String expectedCondition, String expectedPublisher, String expectedGenre, String expectedTitle) {
+        price = expectedPrice;
+        developer = expectedDeveloper;
+        condition = expectedCondition;
+        publisher = expectedPublisher;
+        genre = expectedGenre;
+        title = expectedTitle;
+    }
+
 
     public void setTitle(String expected) {
         title = expected;

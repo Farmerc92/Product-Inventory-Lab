@@ -4,6 +4,13 @@ public class Soda {
     private String brand;
     private double price;
 
+    public Soda(){}
+
+    public Soda(double expectedPrice, String expectedBrand) {
+        brand = expectedBrand;
+        price = expectedPrice;
+    }
+
     public void setBrand(String expected) {
         brand = expected;
     }
