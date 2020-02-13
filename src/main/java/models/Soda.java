@@ -13,6 +13,11 @@ public class Soda {
         price = expectedPrice;
     }
 
+    @Override
+    public String toString(){
+        return "The ID is "+ id + ", the price is $" + price + ", and the brand is " + brand + ".";
+    }
+
     public void setBrand(String expected) {
         brand = expected;
     }

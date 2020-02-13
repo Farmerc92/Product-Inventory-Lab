@@ -18,4 +18,19 @@ public class Console {
         Integer num = number.nextInt();
         return num;
     }
+
+    public static String getStringInput(String prompt)
+    {
+        Scanner string = new Scanner(System.in);
+        System.out.println(prompt);
+        String str = string.nextLine();
+        return str;
+    }
+
+    public static Double getDoubleInput(String prompt) {
+        Scanner doubl = new Scanner(System.in);
+        System.out.println(prompt);
+        Double dou = doubl.nextDouble();
+        return dou;
+    }
 }

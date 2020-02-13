@@ -14,6 +14,10 @@ public class Videogames {
         condition = expectedCondition;
         title = expectedTitle;
     }
+    @Override
+    public String toString(){
+        return "The ID is "+ id + ", the price is $" + price + ", the condition is " + condition + ", and the title is " + title + ".";
+    }
 
 
     public void setTitle(String expected) {

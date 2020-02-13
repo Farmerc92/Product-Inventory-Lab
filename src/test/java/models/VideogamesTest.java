@@ -59,6 +59,18 @@ public class VideogamesTest {
         Assertions.assertEquals(expectedCondition, testVideogames.getCondition());
     }
 
+    @Test
+    public void toStringTest(){
+        double expectedPrice = 59.99;
+        int expectedId = 2;
+        String expectedCondition = "Used";
+        String expectedTitle = "Battlefield";
+
+        Videogames testVideogames = new Videogames(expectedId, expectedPrice, expectedCondition, expectedTitle);
+
+        Assertions.assertEquals("The ID is "+ testVideogames.getId() + ", the price is $" + testVideogames.getPrice() + ", the condition is " + testVideogames.getCondition() + ", and the title is " + testVideogames.getTitle() + ".",
+                testVideogames.toString());
+    }
 
 
 }
