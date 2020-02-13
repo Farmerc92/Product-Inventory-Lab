@@ -19,4 +19,33 @@ public class VideogamesService {
 
         return createdVideogames;
     }
+
+    public Videogames findVideogames(int id){
+        for (Videogames v : inventory){
+            if (v.getId()==id){
+                return v;
+            }
+        }
+        return null;
+    }
+
+    public Videogames[] findAll(){
+        Videogames[] videogamesArray = new Videogames[inventory.size()];
+        int i = 0;
+        while (i < videogamesArray.length){
+            videogamesArray[i] = inventory.get(i);
+            i++;
+        }
+        return videogamesArray;
+    }
+
+    public boolean delete(int id){
+        for (Videogames v : inventory){
+            if(v.getId()==id){
+                inventory.remove(v);
+                return true;
+            }
+        }
+        return false;
+    }
 }
