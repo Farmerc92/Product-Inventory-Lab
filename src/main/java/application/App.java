@@ -153,7 +153,39 @@ public class App {
                     case 6:
                         do {
                             try {
-
+                                int whichProduct = Console.getIntegerInput("Enter either 1 to get different reports about video game products or 2 to get different reports about soda products.");
+                                if (whichProduct == 1){
+                                    int videogamesReportsID = Console.getIntegerInput("Enter an integer to choose ID of video game you wish to see report of.");
+                                    int videogamesReports = Console.getIntegerInput("Enter 1 for price, 2 for condition, or 3 for title.");
+                                    if (videogamesReports == 1){
+                                        System.out.println(videogamesService.findVideogames(videogamesReportsID).getPrice());
+                                    }
+                                    else if (videogamesReports == 2) {
+                                        System.out.println(videogamesService.findVideogames(videogamesReportsID).getCondition());
+                                    }
+                                    else if (videogamesReports == 3) {
+                                        System.out.println(videogamesService.findVideogames(videogamesReportsID).getTitle());
+                                    }
+                                    else {
+                                        System.out.println("Invalid entry. Try again.");
+                                    }
+                                }
+                                else if (whichProduct == 2){
+                                    int sodaReportsID = Console.getIntegerInput("Enter an integer to choose ID of soda you wish to see report of.");
+                                    int sodaReports = Console.getIntegerInput("Enter 1 for price or 2 for brand.");
+                                    if (sodaReports == 1){
+                                        System.out.println(sodaService.findSoda(sodaReportsID).getPrice());
+                                    }
+                                    else if (sodaReports == 2) {
+                                        System.out.println(sodaService.findSoda(sodaReportsID).getBrand());
+                                    }
+                                    else {
+                                        System.out.println("Invalid entry. Try again.");
+                                    }
+                                }
+                                else {
+                                    System.out.println("Invalid entry. Try again.");
+                                }
                                 break;
                             } catch (Exception e) {
                                 System.out.println("Invalid entry. Try again.");
@@ -163,7 +195,6 @@ public class App {
                         System.exit(0);
                         break;
                 }
-
             } catch (Exception e){
                 System.out.println("Invalid entry.  Try again.");
             }
