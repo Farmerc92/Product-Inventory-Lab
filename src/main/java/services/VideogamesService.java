@@ -12,8 +12,8 @@ public class VideogamesService {
     private  static ArrayList<Videogames> inventory = new ArrayList<>();
 
 
-    public Videogames create(String expectedTitle, String expectedGenre, String expectedCondition, String expectedDeveloper, String expectedPublisher, double expectedPrice) {
-        Videogames createdVideogames = new Videogames(nextId++, expectedPrice, expectedDeveloper, expectedCondition, expectedPublisher, expectedGenre, expectedTitle);
+    public Videogames create(String expectedTitle, String expectedCondition, double expectedPrice) {
+        Videogames createdVideogames = new Videogames(nextId++, expectedPrice, expectedCondition, expectedTitle);
 
         inventory.add(createdVideogames);
 

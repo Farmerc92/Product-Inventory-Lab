@@ -11,52 +11,37 @@ public class VideogamesServiceTest {
     public void createTest(){
 
         String expectedTitle = "Battlefield";
-        String expectedDeveloper = "Dice";
-        String expectedPublisher = "EA";
         String expectedCondition = "New";
-        String expectedGenre = "Shooter";
         double expectedPrice = 59.99;
 
         VideogamesService videogamesService = new VideogamesService();
-        Videogames testVideogames = videogamesService.create(expectedTitle, expectedGenre, expectedCondition,expectedDeveloper,expectedPublisher,expectedPrice);
+        Videogames testVideogames = videogamesService.create(expectedTitle, expectedCondition, expectedPrice);
 
         int actualId = testVideogames.getId();
         double actualPrice = testVideogames.getPrice();
         String actualTitle = testVideogames.getTitle();
-        String actualDeveloper = testVideogames.getDeveloper();
-        String actualPublisher = testVideogames.getPublisher();
         String actualCondition = testVideogames.getCondition();
-        String actualGenre = testVideogames.getGenre();
 
         Assertions.assertEquals(Integer.class.getName(), new Integer(actualId).getClass().getName());
         Assertions.assertEquals(expectedTitle, actualTitle);
         Assertions.assertEquals(expectedPrice, actualPrice);
         Assertions.assertEquals(expectedCondition, actualCondition);
-        Assertions.assertEquals(expectedDeveloper, actualDeveloper);
-        Assertions.assertEquals(expectedGenre, actualGenre);
-        Assertions.assertEquals(expectedPublisher, actualPublisher);
     }
 
     @Test
     public void findVideogamesTest(){
         String expectedTitle = "Battlefield";
-        String expectedDeveloper = "Dice";
-        String expectedPublisher = "EA";
         String expectedCondition = "New";
-        String expectedGenre = "Shooter";
         double expectedPrice = 59.99;
 
         VideogamesService videogamesService = new VideogamesService();
-        Videogames testVideogames = videogamesService.create(expectedTitle, expectedGenre, expectedCondition,expectedDeveloper,expectedPublisher,expectedPrice);
+        Videogames testVideogames = videogamesService.create(expectedTitle, expectedCondition, expectedPrice);
 
         String expectedTitle1 = "Halo";
-        String expectedDeveloper1 = "343";
-        String expectedPublisher1 = "Microsoft";
         String expectedCondition1 = "New";
-        String expectedGenre1 = "Shooter";
         double expectedPrice1 = 59.99;
 
-        Videogames testVideogames1 = videogamesService.create(expectedTitle1, expectedGenre1, expectedCondition1,expectedDeveloper1,expectedPublisher1,expectedPrice1);
+        Videogames testVideogames1 = videogamesService.create(expectedTitle1, expectedCondition1, expectedPrice1);
 
         Videogames expectedVideogames = videogamesService.findVideogames(1);
         Assertions.assertEquals(expectedVideogames, testVideogames);
@@ -68,23 +53,17 @@ public class VideogamesServiceTest {
     @Test
     public void findAllTest(){
         String expectedTitle = "Battlefield";
-        String expectedDeveloper = "Dice";
-        String expectedPublisher = "EA";
         String expectedCondition = "New";
-        String expectedGenre = "Shooter";
         double expectedPrice = 59.99;
 
         VideogamesService videogamesService = new VideogamesService();
-        Videogames testVideogames = videogamesService.create(expectedTitle, expectedGenre, expectedCondition,expectedDeveloper,expectedPublisher,expectedPrice);
+        Videogames testVideogames = videogamesService.create(expectedTitle, expectedCondition, expectedPrice);
 
         String expectedTitle1 = "Halo";
-        String expectedDeveloper1 = "343";
-        String expectedPublisher1 = "Microsoft";
         String expectedCondition1 = "New";
-        String expectedGenre1 = "Shooter";
         double expectedPrice1 = 59.99;
 
-        Videogames testVideogames1 = videogamesService.create(expectedTitle1, expectedGenre1, expectedCondition1,expectedDeveloper1,expectedPublisher1,expectedPrice1);
+        Videogames testVideogames1 = videogamesService.create(expectedTitle1, expectedCondition1, expectedPrice1);
 
         Videogames[] videogamesArrayActual = new Videogames[2];
         videogamesArrayActual[0] = testVideogames;
@@ -99,23 +78,17 @@ public class VideogamesServiceTest {
     @Test
     public void deleteTest(){
         String expectedTitle = "Battlefield";
-        String expectedDeveloper = "Dice";
-        String expectedPublisher = "EA";
         String expectedCondition = "New";
-        String expectedGenre = "Shooter";
         double expectedPrice = 59.99;
 
         VideogamesService videogamesService = new VideogamesService();
-        Videogames testVideogames = videogamesService.create(expectedTitle, expectedGenre, expectedCondition,expectedDeveloper,expectedPublisher,expectedPrice);
+        Videogames testVideogames = videogamesService.create(expectedTitle, expectedCondition, expectedPrice);
 
         String expectedTitle1 = "Halo";
-        String expectedDeveloper1 = "343";
-        String expectedPublisher1 = "Microsoft";
         String expectedCondition1 = "New";
-        String expectedGenre1 = "Shooter";
         double expectedPrice1 = 59.99;
 
-        Videogames testVideogames1 = videogamesService.create(expectedTitle1, expectedGenre1, expectedCondition1,expectedDeveloper1,expectedPublisher1,expectedPrice1);
+        Videogames testVideogames1 = videogamesService.create(expectedTitle1, expectedCondition1, expectedPrice1);
 
         boolean expected = videogamesService.delete(1);
 

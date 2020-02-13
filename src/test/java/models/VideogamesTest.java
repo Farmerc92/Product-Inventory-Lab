@@ -16,36 +16,6 @@ public class VideogamesTest {
     }
 
     @Test
-    public void setDeveloperTest(){
-        String expected = "Dice";
-
-        Videogames testVideogames = new Videogames();
-        testVideogames.setDeveloper(expected);
-
-        Assertions.assertEquals(expected, testVideogames.getDeveloper());
-    }
-
-    @Test
-    public void setGenreTest(){
-        String expected = "Shooter";
-
-        Videogames testVideogames = new Videogames();
-        testVideogames.setGenre(expected);
-
-        Assertions.assertEquals(expected, testVideogames.getGenre());
-    }
-
-    @Test
-    public void setPublisherTest(){
-        String expected = "EA";
-
-        Videogames testVideogames = new Videogames();
-        testVideogames.setPublisher(expected);
-
-        Assertions.assertEquals(expected, testVideogames.getPublisher());
-    }
-
-    @Test
     public void setConditionTest(){
         String expected = "Used";
 
@@ -78,19 +48,13 @@ public class VideogamesTest {
     public void constructorTest(){
         double expectedPrice = 59.99;
         int expectedId = 2;
-        String expectedDeveloper = "Dice";
         String expectedCondition = "Used";
-        String expectedPublisher = "EA";
-        String expectedGenre = "Shooter";
         String expectedTitle = "Battlefield";
 
-        Videogames testVideogames = new Videogames(expectedId, expectedPrice, expectedDeveloper, expectedCondition, expectedPublisher, expectedGenre, expectedTitle);
+        Videogames testVideogames = new Videogames(expectedId, expectedPrice, expectedCondition, expectedTitle);
 
         Assertions.assertEquals(expectedId, testVideogames.getId());
         Assertions.assertEquals(expectedPrice, testVideogames.getPrice());
-        Assertions.assertEquals(expectedDeveloper, testVideogames.getDeveloper());
-        Assertions.assertEquals(expectedPublisher, testVideogames.getPublisher());
-        Assertions.assertEquals(expectedGenre, testVideogames.getGenre());
         Assertions.assertEquals(expectedTitle, testVideogames.getTitle());
         Assertions.assertEquals(expectedCondition, testVideogames.getCondition());
     }
