@@ -6,8 +6,6 @@ import models.Videogames;
 import services.SodaService;
 import services.VideogamesService;
 
-import java.sql.SQLOutput;
-
 public class App {
 
     private VideogamesService videogamesService = new VideogamesService();
