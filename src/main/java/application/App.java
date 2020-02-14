@@ -6,31 +6,37 @@ import models.Videogames;
 import services.SodaService;
 import services.VideogamesService;
 
+import java.io.IOException;
+
+import static services.SodaService.saveInventorySoda;
+import static services.VideogamesService.saveInventoryVideoGames;
+
 public class App {
 
     private VideogamesService videogamesService = new VideogamesService();
     private SodaService sodaService = new SodaService();
 
-    public static void main(String... args){
+    public static void main(String... args) {
         App application = new App();
         application.init();
     }
 
-    public void init(){
+    public void init() {
         Console.printWelcome();
+        sodaService.loadDataSoda();
+        videogamesService.loadDataVideoGames();
         do {
             try {
                 Integer selection = Console.getIntegerInput("Here is what you can do... Create different Video games(1) or Soda(2), read from existing products(3), " + "\n" +
                                                                     "update products(4), delete products(5), get different reports about products(6), and exit(7).");
-                //beError = false;
                 switch (selection){
                     case 1:
                         do {
                             try {
                                 Double createVideogamesPrice = Console.getDoubleInput("Enter a price for a video game.");
-                                String createVideogamesConditionAndTitle = Console.getStringInput("Enter a title and condition (used or new) like this (new Battlefield)");
-                                String[] createVideogamesConditionAndTitleArray = createVideogamesConditionAndTitle.split("\\W+");
-                                System.out.println(videogamesService.create(createVideogamesConditionAndTitleArray[0], createVideogamesConditionAndTitleArray[1], createVideogamesPrice).toString() + "\n");
+                                String createVideogamesTitle = Console.getStringInput("Enter a title.");
+                                String createVideogamesCondition = Console.getStringInput("Enter a condition (used or new).");
+                                System.out.println(videogamesService.create(createVideogamesTitle, createVideogamesCondition, createVideogamesPrice).toString() + "\n");
                                 break;
                             } catch (Exception e){
                                 System.out.println("Invalid entry. Try again.");
@@ -190,8 +196,9 @@ public class App {
                             }
                         }while(true);
                     case 7:
+                        saveInventorySoda();
+                        saveInventoryVideoGames();
                         System.exit(0);
-                        break;
                 }
             } catch (Exception e){
                 System.out.println("Invalid entry.  Try again.");

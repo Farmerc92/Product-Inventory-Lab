@@ -1,17 +1,21 @@
 package services;
 
 import models.Soda;
+import utils.CSVUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class SodaService {
     
     private static int nextId = 1;
     
-    private  static ArrayList<Soda> inventory = new ArrayList<>();
+    private static ArrayList<Soda> inventory = new ArrayList<>();
 
     public static Soda create(String expectedBrand, double expectedPrice) {
         Soda createdSoda = new Soda(nextId++, expectedPrice, expectedBrand);
@@ -47,7 +51,11 @@ public class SodaService {
         }
         return false;
     }
-    private void loadData(){
+
+    public static ArrayList<Soda> getInventory(){
+        return inventory;
+    }
+    public void loadDataSoda(){
         // (1)
         String csvFile = "/Users/cfarmer/Desktop/Soda.csv";
         String line = "";
@@ -72,6 +80,24 @@ public class SodaService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void saveInventorySoda() throws IOException {
+        String csvFile = "/Users/cfarmer/Desktop/Soda.csv";
+        FileWriter writer = new FileWriter(csvFile); //(1)
+
+        CSVUtils.writeLine(writer, new ArrayList<String>(Arrays.asList(String.valueOf(nextId))));  // (2)
+
+        for (Soda s : inventory) {
+            List<String> list = new ArrayList<>(); // (3)
+            list.add(String.valueOf(s.getId()));
+            list.add(s.getBrand());
+            list.add(String.valueOf(s.getPrice()));
+
+            CSVUtils.writeLine(writer, list);  // (4)
+        }
+        writer.flush();
+        writer.close();
     }
 
 }
