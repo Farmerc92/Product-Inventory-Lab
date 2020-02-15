@@ -16,12 +16,12 @@ public class App {
     private VideogamesService videogamesService = new VideogamesService();
     private SodaService sodaService = new SodaService();
 
-    public static void main(String... args) {
+    public static void main(String... args) throws IOException {
         App application = new App();
         application.init();
     }
 
-    public void init() {
+    public void init() throws IOException {
         Console.printWelcome();
         sodaService.loadDataSoda();
         videogamesService.loadDataVideoGames();

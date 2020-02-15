@@ -1,13 +1,15 @@
 package services;
 
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import models.Soda;
 import models.Videogames;
 import utils.CSVUtils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -59,52 +61,14 @@ public class VideogamesService {
         return inventory;
     }
 
-    public void loadDataVideoGames(){
-        // (1)
-        String csvFile = "/Users/cfarmer/Desktop/VideoGames.csv";
-        String line = "";
-        String csvSplitBy = ",";
-
-        // (2)
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            nextId = Integer.parseInt(br.readLine());  // (3)
-
-            while ((line = br.readLine()) != null) {
-                // split line with comma
-                String[] beer = line.split(csvSplitBy);
-
-                // (4)
-                int id = Integer.parseInt(beer[0]);
-                double price = Double.parseDouble(beer[1]);
-                String condition = beer[2];
-                String title = beer[3];
-
-                // (5)
-                inventory.add(new Videogames(id, price, condition, title));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void loadDataVideoGames() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        this.inventory = objectMapper.readValue(new File("/Users/cfarmer/Projects/Product-Inventory-Lab/videogames.json"), new TypeReference<ArrayList<Videogames>>(){});
     }
 
     public static void saveInventoryVideoGames() throws IOException {
-        String csvFile = "/Users/cfarmer/Desktop/VideoGames.csv";
-        FileWriter writer = new FileWriter(csvFile); //(1)
-
-        CSVUtils.writeLine(writer, new ArrayList<String>(Arrays.asList(String.valueOf(nextId))));  // (2)
-
-        for (Videogames s : inventory) {
-            List<String> list = new ArrayList<>(); // (3)
-            list.add(String.valueOf(s.getId()));
-            list.add(String.valueOf(s.getPrice()));
-            list.add(String.valueOf(s.getCondition()));
-            list.add(String.valueOf(s.getTitle()));
-
-            CSVUtils.writeLine(writer, list);  // (4)
-        }
-
-// (5)
-        writer.flush();
-        writer.close();
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+        writer.writeValue(new File("/Users/cfarmer/Projects/Product-Inventory-Lab/videogames.json"), inventory);
     }
 }

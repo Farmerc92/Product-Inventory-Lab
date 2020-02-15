@@ -1,12 +1,13 @@
 package services;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import models.Soda;
 import utils.CSVUtils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,49 +56,16 @@ public class SodaService {
     public static ArrayList<Soda> getInventory(){
         return inventory;
     }
-    public void loadDataSoda(){
-        // (1)
-        String csvFile = "/Users/cfarmer/Desktop/Soda.csv";
-        String line = "";
-        String csvSplitBy = ",";
 
-        // (2)
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            nextId = Integer.parseInt(br.readLine());  // (3)
-
-            while ((line = br.readLine()) != null) {
-                // split line with comma
-                String[] beer = line.split(csvSplitBy);
-
-                // (4)
-                int id = Integer.parseInt(beer[0]);
-                String brand = beer[1];
-                double price = Double.parseDouble(beer[2]);
-
-                // (5)
-                inventory.add(new Soda(id, price, brand));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void loadDataSoda() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        this.inventory = objectMapper.readValue(new File("/Users/cfarmer/Projects/Product-Inventory-Lab/soda.json"), new TypeReference<ArrayList<Soda>>(){});
     }
 
     public static void saveInventorySoda() throws IOException {
-        String csvFile = "/Users/cfarmer/Desktop/Soda.csv";
-        FileWriter writer = new FileWriter(csvFile); //(1)
-
-        CSVUtils.writeLine(writer, new ArrayList<String>(Arrays.asList(String.valueOf(nextId))));  // (2)
-
-        for (Soda s : inventory) {
-            List<String> list = new ArrayList<>(); // (3)
-            list.add(String.valueOf(s.getId()));
-            list.add(s.getBrand());
-            list.add(String.valueOf(s.getPrice()));
-
-            CSVUtils.writeLine(writer, list);  // (4)
-        }
-        writer.flush();
-        writer.close();
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+        writer.writeValue(new File("/Users/cfarmer/Projects/Product-Inventory-Lab/soda.json"), inventory);
     }
 
 }
