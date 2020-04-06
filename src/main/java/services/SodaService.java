@@ -59,7 +59,7 @@ public class SodaService {
 
     public void loadDataSoda() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        this.inventory = objectMapper.readValue(new File("/Users/cfarmer/Projects/Product-Inventory-Lab/soda.json"), new TypeReference<ArrayList<Soda>>(){});
+        this.inventory = objectMapper.readValue(new File("soda.json"), new TypeReference<ArrayList<Soda>>(){});
     }
 
     public static void saveInventorySoda() throws IOException {
